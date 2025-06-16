@@ -1,0 +1,13 @@
+class Main {
+    public static void main(String[] args) {
+        System.out.println(pow(3));
+    }
+    public static int pow(int n){
+        if(n==1){
+            return 1;
+        }
+        int val=n*pow(n-1);
+        return val;
+    }
+    
+}

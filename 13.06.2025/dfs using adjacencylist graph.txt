@@ -1,0 +1,75 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+
+class Main {
+    public static void main(String[] args) {
+        Graph graph=new Graph(5,false);
+        graph.addEdge(0,1);
+        graph.addEdge(0,4);
+        graph.addEdge(1,2);
+        graph.addEdge(1,4);
+        graph.addEdge(2,3);
+        graph.addEdge(3,4);
+        graph.printGraph();
+        graph.dfs(0,new boolean[5]);
+        System.out.println(" ");
+        graph.printGraph();
+        
+    }
+}
+
+class Graph{
+    int[][] graph;
+    int vertices;
+    boolean isdirected;
+    Graph(int vertices,boolean isdirected){
+        this.vertices=vertices;
+        this.isdirected=isdirected;
+        this.graph=new ArrayList<HashSet<Integer>>();
+        for(int i=0;i<vertices;i++){
+            graph.add(new HashSet<Integer>());
+        }
+    }
+    public void addEdge(int src,int dest){
+        if (isValid (src,dest)){
+            this.graph.get(src).add(dest);
+            if(!isdirected)
+            this.graph.get(dest).add(src);
+        }else{
+            System.out.println("Invalid source and destination");
+            for(int i=0;i<this.vertices;i++){
+                System.out.print(i +" ");
+            }
+        }
+    }
+    boolean ishavingEdge(int src,int dest){
+        return this.graph.get(src).contains(dest);
+    }
+    HashSet<Integer>getNeighbours(int src)throws
+    IndexOutOfBoundsException{
+        if(src>=0&&src<vertices)
+        return this.graph.get(src);
+        throw new IndexOutOfBoundsException("invalid");
+        
+        
+            
+        
+    }
+    boolean isvalid(int src,int dest){
+        return src>=0&&dest>=0&&src<this.vertices&&dest<this.vertices&&src!=dest;
+    }
+    void printGraph(){
+        System.out.println(graph);
+    }
+    void dfs(int start,boolean[] visited){
+        visited[start]=true;
+        System.out.print(start +" ");
+        var neibhours=getNeighbours(start);
+        for(int neibhour:neibhours){
+            
+            if(!visited[neibhour]){
+                dfs(neibhour,visited);
+            }
+        }
+    }
+}

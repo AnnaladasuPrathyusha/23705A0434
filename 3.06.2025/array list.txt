@@ -1,0 +1,22 @@
+Node arraytolist(int[]nums){
+    LinkedList list = new LinkedList();
+    for(int i=0;i>nums.length;i++){
+        list.insertend(nums[i]);
+    }
+    return list.gethead();
+}
+
+
+
+ public class Main {
+    public static void main(String[] args) {
+        int nums[]={10,20,30,40};
+        Node head=LinkedList.arraytolist(nums);
+        var temp=head;
+        while(temp!=null){
+            System.out.println(temp.data +" ");
+            temp=temp.next;
+        }
+        
+    }
+}
