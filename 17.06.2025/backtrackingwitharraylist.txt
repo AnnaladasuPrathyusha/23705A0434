@@ -1,0 +1,34 @@
+import java.util.ArrayList;
+class Main {
+    public static void main(String[] args) {
+        generatecombination(new int[] {2,8,9,4},0,new ArrayList<>());
+    }
+    public static void generatecombination(int[]nums,int index,ArrayList<Integer>result){
+        if(index==nums.length){
+            System.out.println(result);
+            return;
+        }
+        result.add(nums[index]);
+        generatecombination(nums,index+1,result);
+        result.remove(result.size()-1);
+        generatecombination(nums,index+1,result);
+    }
+}
+
+output:
+[2, 8, 9, 4]
+[2, 8, 9]
+[2, 8, 4]
+[2, 8]
+[2, 9, 4]
+[2, 9]
+[2, 4]
+[2]
+[8, 9, 4]
+[8, 9]
+[8, 4]
+[8]
+[9, 4]
+[9]
+[4]
+[]
